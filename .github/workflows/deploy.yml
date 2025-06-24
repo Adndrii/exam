@@ -75,6 +75,6 @@ jobs:
         uses: aws-actions/amazon-ecs-deploy-task-definition@v2
         with:
           task-definition: ./deployments/ecs-task-definition.json
-          service: manager
+          service: manager-service-vra8zyuu
           cluster: dev-claster1
           wait-for-service-stability: true
