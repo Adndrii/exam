@@ -12,18 +12,22 @@ jobs:
     steps:
       - name: 🛠️ Checkout Repository
         uses: actions/checkout@v4
+
       - name: ⚙️ Setup .NET 9 SDK
         uses: actions/setup-dotnet@v4
         with:
           dotnet-version: 9.x
+
       - name: 📦 Restore Dependencies
         run: dotnet restore ./retake.csproj
+
       - name: 🏗️ Build Project
         run: dotnet build ./retake.csproj --no-restore
+
       - name: ✅ Run Tests
         run: dotnet test ./retake.csproj --no-build --verbosity normal
 
-publish:
+  publish:
     needs: build
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
@@ -50,4 +54,4 @@ publish:
         working-directory: ./retake/
         run: |
           dotnet publish -c Release -p:ContainerRepository=${{ secrets.REPOSITORY }} -p:RuntimeIdentifier=linux-x64
-          docker push ${{ secrets.REPOSITORY }} --all-tags        
+          docker push ${{ secrets.REPOSITORY }} --all-tags
