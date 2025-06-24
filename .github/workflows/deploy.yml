@@ -57,7 +57,7 @@ jobs:
           docker push ${{ secrets.REPOSITORY }} --all-tags
 
 
- deploy:
+  deploy:
     needs: publish
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
