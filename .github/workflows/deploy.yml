@@ -76,5 +76,5 @@ jobs:
         with:
           task-definition: ./deployments/ecs-task-definition.json
           service: manager
-          cluster: dev-cluster1
+          cluster: dev-claster1
           wait-for-service-stability: true
